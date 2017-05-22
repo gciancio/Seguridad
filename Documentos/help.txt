@@ -1,0 +1,2 @@
+-Se agregan diagrama de tablas, clases y documento funcional
+-Para la configuracion de la base de datos de este proyecto, ver el documento PERSISTENCIA (HSQLDB)
