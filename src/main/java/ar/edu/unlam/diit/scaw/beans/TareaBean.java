@@ -45,8 +45,13 @@ public class TareaBean implements Serializable {
 		return "tareas";
 	}
 	
-	public List<Tarea> listarTareas() {
-		List<Tarea> list = service.listarTareas();
+	public List<Tarea> listarTareasCreadas(Integer usuarioId) {
+		List<Tarea> list = service.listarTareasCreadas(usuarioId);
+		return list;
+	}
+	
+	public List<Tarea> listarTareasAsignadas(Integer usuarioId) {
+		List<Tarea> list = service.listarTareasAsignadas(usuarioId);
 		return list;
 	}
 	

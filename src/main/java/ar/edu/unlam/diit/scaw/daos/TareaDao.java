@@ -8,7 +8,9 @@ public interface TareaDao {
 
 	public void guardarTarea(Tarea tarea, Integer usuarioId);
 
-	public List<Tarea> listarTareas();
+	public List<Tarea> listarTareasCreadas(Integer usuarioId);
+	
+	public List<Tarea> listarTareasAsignadas(Integer usuarioId);
 	
 	public void eliminarTarea(Integer tareaId);
 	

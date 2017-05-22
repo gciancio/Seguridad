@@ -39,9 +39,19 @@ public class TareaDaoImpl implements TareaDao {
 	}
 
 	@Override
-	public List<Tarea> listarTareas() {
-		String sql = "SELECT T.*,U.nombre FROM Tareas T INNER JOIN Usuarios U ON T.usuarioAlta = U.usuarioId WHERE privacidad=1";
+	public List<Tarea> listarTareasCreadas(Integer usuarioId) {
+		String sql = "SELECT * FROM Tareas WHERE usuarioAlta = :usuarioId";
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("usuarioId", usuarioId);
+		List<Tarea> result = jdbcTemplate.query(sql, params, new TareaMapper());
+		return result;
+	}
+	
+	@Override
+	public List<Tarea> listarTareasAsignadas(Integer usuarioId) {
+		String sql = "SELECT * FROM Tareas WHERE usuarioAsignado = :usuarioId";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("usuarioId", usuarioId);
 		List<Tarea> result = jdbcTemplate.query(sql, params, new TareaMapper());
 		return result;
 	}

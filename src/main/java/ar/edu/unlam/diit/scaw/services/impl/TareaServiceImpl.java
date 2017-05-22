@@ -19,8 +19,13 @@ public class TareaServiceImpl implements TareaService {
 	}
 
 	@Override
-	public List<Tarea> listarTareas() {
-		return tareaDao.listarTareas();
+	public List<Tarea> listarTareasCreadas(Integer usuarioId) {
+		return tareaDao.listarTareasCreadas(usuarioId);
+	}
+	
+	@Override
+	public List<Tarea> listarTareasAsignadas(Integer usuarioId) {
+		return tareaDao.listarTareasAsignadas(usuarioId);
 	}
 	
 	@Override

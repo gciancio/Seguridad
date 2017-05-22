@@ -22,8 +22,9 @@
 		<h2 class="text-center">Listado de Tareas</h2>
 		<br>
 		</br>
+		<h3 class="text-center">Tareas Creadas</h3>
 	    <h:form>
-			<center><h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+			<center><h:dataTable value="#{tareaBean.listarTareasCreadas(sessionScope.usuario.usuarioId)}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
 				<h:column>
 					<f:facet name="header">ID</f:facet>    				
 		      		#{tarea.tareaId}
@@ -53,7 +54,7 @@
 				</h:column>		
 				<h:column>
 					<f:facet name="header">Autor</f:facet>
-				 	#{tarea.usuarioAlta} 	    	  				
+				 	#{tarea.usuarioAlta}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Asignado a</f:facet>
@@ -67,6 +68,57 @@
 					<f:facet name="header">Acción</f:facet>
 		    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-danger" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
 		    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tarea.tareaId, tarea.titulo, tarea.descripcion, tarea.privacidad, tarea.tipoTarea, tarea.estadoId)}" class="btn btn-info" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAlta != sessionScope.usuario.usuarioId and (tarea.privacidad == 1 and tarea.tipoTarea == 1))}"></h:commandButton>
+			   </h:column>
+			</h:dataTable></center>
+		</h:form>
+		
+		<!-- El usuario puede editar o eliminar todas sus tareas y puede editar las tareas asignadas creadas por otro usuario solo si son editables -->
+		<h3 class="text-center">Tareas Asignadas</h3>
+	    <h:form>
+			<center><h:dataTable value="#{tareaBean.listarTareasAsignadas(sessionScope.usuario.usuarioId)}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">ID</f:facet>    				
+		      		#{tarea.tareaId}
+		  		</h:column>
+				<h:column>
+					<f:facet name="header">Titulo</f:facet>    				
+				   	#{tarea.titulo}
+				</h:column> 
+				<h:column>
+					<f:facet name="header">Descripcion</f:facet>
+				   	#{tarea.descripcion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Privacidad</f:facet>
+					<h:outputLabel value="Publica"	rendered="#{tarea.privacidad == 1}" />
+					<h:outputLabel value="Privada" rendered="#{tarea.privacidad == 2}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo</f:facet>
+					<h:outputLabel value="Editable"	rendered="#{tarea.tipoTarea == 1}" />
+					<h:outputLabel value="Solo lectura" rendered="#{tarea.tipoTarea == 2}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Estado</f:facet>
+					<h:outputLabel value="Pendiente" rendered="#{tarea.estadoId == 1}" />
+					<h:outputLabel value="Completa" rendered="#{tarea.estadoId == 2}" />
+				</h:column>		
+				<h:column>
+					<f:facet name="header">Autor</f:facet>
+				 	#{tarea.usuarioAlta}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Asignado a</f:facet>
+				 	#{tarea.usuarioAsignado}	    	  				
+				</h:column>
+				<h:column>
+					<f:facet name="header">Creación</f:facet>
+				 	#{tarea.fechaAlta} 	    	  				
+				</h:column>
+			    <h:column>
+					<f:facet name="header">Acción</f:facet>
+		    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-danger" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
+		    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tarea.tareaId, tarea.titulo, tarea.descripcion, tarea.privacidad, tarea.tipoTarea, tarea.estadoId)}" class="btn btn-info" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAsignado == sessionScope.usuario.usuarioId and tarea.tipoTarea == 1)}"></h:commandButton>
 			   </h:column>
 			</h:dataTable></center>
 		</h:form>
