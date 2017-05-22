@@ -11,6 +11,7 @@ public class Tarea {
 	private Integer privacidad;
 	private Integer tipoTarea;
 	private Integer usuarioAlta;
+	private Integer usuarioAsignado;
 	private Date fechaAlta = new Date();
 	
 	public Tarea(){
@@ -70,6 +71,14 @@ public class Tarea {
 	
 	public void setUsuarioAlta(Integer usuarioAlta){
 		this.usuarioAlta = usuarioAlta;
+	}
+	
+	public Integer getUsuarioAsignado(){
+		return usuarioAsignado;
+	}
+	
+	public void setUsuarioAsignado(Integer usuarioAsignado){
+		this.usuarioAsignado = usuarioAsignado;
 	}
 	
 	public Date getFechaAlta(){

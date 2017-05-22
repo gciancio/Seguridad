@@ -52,6 +52,13 @@
 				   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
 				   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
 						</h:selectOneMenu>
+						
+						<h:outputLabel for="usuarioAsignado">Asignar a:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.usuarioAsignado}"> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Usuario" /> 
+				   			<f:selectItem itemValue = "3" itemLabel = "TestNombre" /> 
+				   			<f:selectItem itemValue = "4" itemLabel = "Juan" />
+						</h:selectOneMenu>
 							
 					</h:panelGrid>
 					<br></br>

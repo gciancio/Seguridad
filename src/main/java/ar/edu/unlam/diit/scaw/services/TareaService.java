@@ -12,7 +12,7 @@ public interface TareaService {
 	
 	public void eliminarTarea(Integer tareaId);
 	
-	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId);
+	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId, Integer usuarioAsignado);
 
 	public List<Tarea> listarTareasAnonimo();
 

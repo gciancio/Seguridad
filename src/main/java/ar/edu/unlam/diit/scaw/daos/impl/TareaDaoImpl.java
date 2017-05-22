@@ -24,7 +24,7 @@ public class TareaDaoImpl implements TareaDao {
 
 	@Override
 	public void guardarTarea(Tarea tarea, Integer usuarioId) {
-		String sql = "INSERT INTO Tareas (Titulo, Descripcion, EstadoId, Privacidad, TipoTarea, UsuarioAlta, FechaAlta) VALUES (:titulo, :descripcion, :estadoId, :privacidad, :tipoTarea, :usuarioAlta, :fechaAlta)";
+		String sql = "INSERT INTO Tareas (Titulo, Descripcion, EstadoId, Privacidad, TipoTarea, UsuarioAlta, UsuarioAsignado, FechaAlta) VALUES (:titulo, :descripcion, :estadoId, :privacidad, :tipoTarea, :usuarioAlta, :usuarioAsignado, :fechaAlta)";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("titulo", tarea.getTitulo());
 		params.put("descripcion", tarea.getDescripcion());
@@ -32,6 +32,7 @@ public class TareaDaoImpl implements TareaDao {
 		params.put("privacidad", tarea.getPrivacidad());
 		params.put("tipoTarea", tarea.getTipoTarea());
 		params.put("usuarioAlta", usuarioId);
+		params.put("usuarioAsignado", tarea.getUsuarioAsignado());
 		params.put("fechaAlta", tarea.getFechaAlta());
 		jdbcTemplate.update(sql, params);
 
@@ -54,9 +55,9 @@ public class TareaDaoImpl implements TareaDao {
 	}
 	
 	@Override
-	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {
+	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId, Integer usuarioAsignado) {
 
-		String sql = "UPDATE Tareas SET titulo = " + titulo + ", descripcion = " + descripcion + ", privacidad = " + privacidad + ", tipoTarea = " + tipoTarea + ", estadoId = " + estadoId + " WHERE tareaId = " + tareaId + "";
+		String sql = "UPDATE Tareas SET titulo = " + titulo + ", descripcion = " + descripcion + ", privacidad = " + privacidad + ", tipoTarea = " + tipoTarea + ", estadoId = " + estadoId + ",usuarioAsignado = " + usuarioAsignado + " WHERE tareaId = " + tareaId + "";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("tareaId", Integer.parseInt(tareaId));
 		params.put("titulo", titulo);
@@ -64,7 +65,7 @@ public class TareaDaoImpl implements TareaDao {
 		params.put("privacidad", privacidad);
 		params.put("tipoTarea", tipoTarea);
 		params.put("estadoId", estadoId);		
-		
+		params.put("usuarioAsignado", usuarioAsignado);
 		jdbcTemplate.update(sql, params);
 	}
 	
@@ -95,6 +96,7 @@ public class TareaDaoImpl implements TareaDao {
 			tarea.setPrivacidad(rs.getInt("privacidad"));
 			tarea.setTipoTarea(rs.getInt("tipoTarea"));
 			tarea.setUsuarioAlta(rs.getInt("usuarioAlta"));
+			tarea.setUsuarioAsignado(rs.getInt("usuarioAsignado"));
 			tarea.setFechaAlta(rs.getDate("fechaAlta"));
 			return tarea;
 		}

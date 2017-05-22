@@ -33,8 +33,8 @@ public class TareaServiceImpl implements TareaService {
 		tareaDao.eliminarTarea(tareaId);
 	}
 	
-	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {
-		tareaDao.actualizarTarea(tareaId, titulo, descripcion, privacidad, tipoTarea, estadoId);
+	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId, Integer usuarioAsignado) {
+		tareaDao.actualizarTarea(tareaId, titulo, descripcion, privacidad, tipoTarea, estadoId, usuarioAsignado);
 	}
 
 	public TareaDao getTareaDao() {
