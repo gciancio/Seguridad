@@ -40,6 +40,7 @@
 				<h:link class="btn btn-primary" value="Listado Tareas" outcome="tareas" />
 				<h:link class="btn btn-primary" value="Crear Tarea" outcome="altaTarea" />
 				<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" class="btn btn-primary"/> 
+				<h:commandLink id="bajaUsuario" value="Eliminar cuenta" action="#{usuarioBean.eliminarUsuario(sessionScope.usuario.usuarioId)}" class="btn btn-primary"/> 
 			</h:form></center>
 		</h:panelGroup>
 				

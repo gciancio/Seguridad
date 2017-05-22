@@ -57,8 +57,9 @@ public class UsuarioBean implements Serializable {
 	}
 	
 	public String eliminarUsuario(Integer usuarioId) {
+		this.logout();
 		service.eliminarUsuario(usuarioId);				
-		return "usuarios";
+		return "login";
 	}
 	
 	public String activarUsuario(Integer usuarioId, Boolean activo) {
